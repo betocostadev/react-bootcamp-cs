@@ -1,0 +1,22 @@
+.Pokedex {
+  text-align: center;
+}
+.Pokedex h1, h2, h3 {
+  margin: 0.45rem;
+}
+.Pokedex-cards {
+  margin: 0.4rem auto;
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0.2rem;
+}
+
+.Pokedex-win {
+  color: rgb(39, 139, 39);
+}
+
+.Pokedex-lose {
+  color: rgb(209, 14, 14);
+}
