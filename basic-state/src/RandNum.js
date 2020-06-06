@@ -4,7 +4,7 @@ class RandNum extends Component {
   constructor (props) {
     super(props)
     this.state = { num: 0 }
-    // You can call the function here, in the constructor
+    // You can call the function here, in the constructor -> This is not recommended
     // this.makeTimer()
   }
 
@@ -19,6 +19,7 @@ class RandNum extends Component {
     this.setState({ num: newNum })
   }
 
+  // Using the lifecycle method ComponentDidMount
   componentDidMount() {
     this.makeTimer()
   }
