@@ -1,0 +1,37 @@
+.RollDice {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 60vh;
+  transition: all 0.2s ease;
+}
+
+.RollDice h2 {
+  text-align: center;
+}
+
+.RollDice button {
+  cursor: pointer;
+  align-self: center;
+  font-weight: bold;
+  width: 12rem;
+  margin: 2rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: #26a74d;
+}
+
+.RollDice button:hover {
+  background: #36df60;
+}
+
+.RollDice button:disabled {
+  background: #26a74d;
+  cursor: wait;
+}
+
+.RollDice-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
