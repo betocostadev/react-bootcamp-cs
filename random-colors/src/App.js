@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>Random Colors</h1>
-      <ColorContainer />
+      <ColorContainer boxes={20}/>
     </div>
   )
 }
