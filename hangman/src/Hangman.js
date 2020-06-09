@@ -1,24 +1,25 @@
-import React, { Component } from "react";
-import "./Hangman.css";
-import img0 from "./0.jpg";
-import img1 from "./1.jpg";
-import img2 from "./2.jpg";
-import img3 from "./3.jpg";
-import img4 from "./4.jpg";
-import img5 from "./5.jpg";
-import img6 from "./6.jpg";
+import React, { Component } from "react"
+import "./Hangman.css"
+import img0 from "./0.jpg"
+import img1 from "./1.jpg"
+import img2 from "./2.jpg"
+import img3 from "./3.jpg"
+import img4 from "./4.jpg"
+import img5 from "./5.jpg"
+import img6 from "./6.jpg"
 
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
   static defaultProps = {
     maxWrong: 6,
-    images: [img0, img1, img2, img3, img4, img5, img6]
-  };
+    images: [img0, img1, img2, img3, img4, img5, img6],
+    imagesAlt: ['head draw', 'head and body draw', 'head, body, and right-arm', 'head, body, right-arm and left-arm', 'head, body, arms and right-leg', 'complete body']
+  }
 
   constructor(props) {
-    super(props);
-    this.state = { nWrong: 0, guessed: new Set(), answer: "apple" };
-    this.handleGuess = this.handleGuess.bind(this);
+    super(props)
+    this.state = { nWrong: 0, guessed: new Set(), answer: this.props.answer, gameOver: false }
+    this.handleGuess = this.handleGuess.bind(this)
   }
 
   /** guessedWord: show current-state of word:
@@ -27,7 +28,7 @@ class Hangman extends Component {
   guessedWord() {
     return this.state.answer
       .split("")
-      .map(ltr => (this.state.guessed.has(ltr) ? ltr : "_"));
+      .map(ltr => (this.state.guessed.has(ltr) ? ltr : "_"))
   }
 
   /** handleGuest: handle a guessed letter:
@@ -38,8 +39,15 @@ class Hangman extends Component {
     let ltr = evt.target.value;
     this.setState(st => ({
       guessed: st.guessed.add(ltr),
-      nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
-    }));
+      nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1),
+    }))
+    this.handleGameOver()
+  }
+
+  handleGameOver() {
+    this.setState(st => ({
+      gameOver: st.nWrong === this.props.maxWrong ? st.gameOver = true : st.gameOver = false
+    }))
   }
 
   /** generateButtons: return array of letter buttons to render */
@@ -61,13 +69,23 @@ class Hangman extends Component {
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
-        <img src={this.props.images[this.state.nWrong]} alt="hangman part" />
-        <p>Incorrect guesses: { this.state.nWrong }</p>
-        <p className='Hangman-word'>{this.guessedWord()}</p>
-        <p className='Hangman-btns'>{this.generateButtons()}</p>
+        <img src={this.props.images[this.state.nWrong]} alt={this.props.imagesAlt[this.state.nWrong]} />
+        {
+          this.state.gameOver === true
+          ? <div>
+              <p>Game over!</p>
+              <p>The correct word was { this.state.answer }</p>
+            </div>
+
+          : <div>
+              <p>Incorrect guesses: { this.state.nWrong }</p>
+              <p className='Hangman-word'>{this.guessedWord()}</p>
+              <p className='Hangman-btns'>{this.generateButtons()}</p>
+            </div>
+        }
       </div>
-    );
+    )
   }
 }
 
-export default Hangman;
+export default Hangman
