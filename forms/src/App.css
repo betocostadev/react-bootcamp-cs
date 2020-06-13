@@ -1,0 +1,38 @@
+.App {
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+}
+
+.box-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 50vw;
+  margin: 1rem 0;
+}
+
+.box-form div {
+  margin-bottom: 0.5rem;
+}
+
+.box-form label {
+  margin-right: 1rem;
+}
+
+.box-form button {
+  margin: 1rem;
+  height: 3rem;
+  width: 5rem;
+}
+
+.App-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
