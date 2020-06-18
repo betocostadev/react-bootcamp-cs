@@ -7,9 +7,10 @@ class TodoList extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { todos: [ { task: 'Skip rope' }, { task: 'Complete quests' } ]}
+    this.state = { todos: [ ]}
 
     this.create = this.create.bind(this)
+    this.remove = this.remove.bind(this)
   }
 
   create(newTodo) {
@@ -18,8 +19,15 @@ class TodoList extends Component {
     })
   }
 
+  remove(id) {
+    this.setState({
+      todos: this.state.todos.filter(td => td.id !== id)
+    })
+  }
+
   render () {
-    const todos = this.state.todos.map(td => <Todo task={ td.task } />)
+    // Also passing the id as the key, this way the Todo component will have access to the id that matches the key.
+    const todos = this.state.todos.map(td => <Todo key={td.id} id={td.id} task={td.task} removeTodo={this.remove} />)
 
     return (
       <div>
