@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Todo from './Todo'
 import NewTodo from './NewTodo'
+import './TodoList.css'
 
 class TodoList extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class TodoList extends Component {
     this.create = this.create.bind(this)
     this.remove = this.remove.bind(this)
     this.updateTodo = this.updateTodo.bind(this)
+    this.toggleCompletion = this.toggleCompletion.bind(this)
   }
 
   create(newTodo) {
@@ -39,17 +41,43 @@ class TodoList extends Component {
     this.setState({ todos: updatedTodos })
   }
 
+  toggleCompletion(id) {
+    const updatedTodos = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed
+        }
+      }
+      return todo
+    })
+    this.setState({ todos: updatedTodos })
+  }
+
   render () {
     // Also passing the id as the key, this way the Todo component will have access to the id that matches the key.
-    const todos = this.state.todos.map(td => <Todo key={td.id} id={td.id} task={td.task} removeTodo={this.remove} updateTodo={this.updateTodo}/>)
+    const todos = this.state.todos.map(td => {
+      return (
+        <Todo
+          key={td.id}
+          id={td.id}
+          task={td.task}
+          completed={td.completed}
+          removeTodo={this.remove}
+          updateTodo={this.updateTodo}
+          toggleCompletion={this.toggleCompletion} />
+        )
+      })
 
     return (
-      <div>
-        <h2>TodoList</h2>
-        <NewTodo createTodo={ this.create } />
+      <div className="TodoList">
+        <h1>
+          TodoList! <span>A simple React Todolist</span>
+        </h1>
         <ul>
-         { todos }
+        { todos }
         </ul>
+        <NewTodo createTodo={ this.create } />
       </div>
     )
   }
