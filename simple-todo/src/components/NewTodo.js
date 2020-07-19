@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import './NewTodoForm.css'
 
 class NewTodo extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class NewTodo extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form className="New-todo-form" onSubmit={ this.handleSubmit }>
         <label htmlFor="task">New To-Do</label>
         <input type="text" id="task" name="task" placeholder="New To-Do"
           value={ this.state.task }
