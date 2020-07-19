@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import RuleRow from './RuleRow';
-import './ScoreTable.css';
-import { ones, twos, threes, fours, fives, sixes, threeOfKind, fourOfKind, fullHouse, smallStraight, largeStraight, yahtzee, chance } from './Rules';
+import React, { Component } from 'react'
+import RuleRow from './RuleRow'
+import './ScoreTable.css'
+import { ones, twos, threes, fours, fives, sixes, threeOfKind, fourOfKind, fullHouse, smallStraight, largeStraight, yahtzee, chance } from './Rules'
 
 
 class ScoreTable extends Component {
 
   render() {
-    const { scores, doScore } = this.props;
+    const { scores, doScore } = this.props
 
     return (
       <div className="ScoreTable">
@@ -43,4 +43,4 @@ class ScoreTable extends Component {
   }
 }
 
-export default ScoreTable;
+export default ScoreTable
